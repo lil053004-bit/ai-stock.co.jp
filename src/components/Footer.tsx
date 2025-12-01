@@ -88,6 +88,14 @@ export default function Footer() {
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li>
                   <Link
+                    to="/company"
+                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
+                  >
+                    会社概要 <ExternalLink className="w-3 h-3" />
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/terms"
                     className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
                   >
