@@ -42,7 +42,31 @@ router.post('/diagnosis', async (req, res) => {
     if (!apiKeysString) {
       console.warn('SILICONFLOW_API_KEY not configured, using mock response');
 
-      const mockAnalysis = `【AI診断】ご入力いただいた${stockData.name}について、モメンタム分析・リアルタイムデータ・AIロジックをもとに診断を行いました。\n\n現在の株価は${stockData.price}円、前日比${stockData.change}円（${stockData.changePercent}）。\n\n現在、短期ボラティリティ指標が過去30日の平均と比較して中水準に達しています。AIの分析によると、テクニカルは過買い（RSI[73%]）が優勢となっており、回調へのつながる傾向が見られます。\n\n私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。\n\n追加が完了しましたら、詳細診断レポートを受け取るために、銘柄コード「${stockData.name}」または【${code}】を送信してください。`;
+      const changePercent = parseFloat(stockData.changePercent.replace('%', ''));
+      const absChangePercent = Math.abs(changePercent);
+
+      let volatilityLevel = '中水準';
+      if (absChangePercent >= 2) volatilityLevel = '高水準';
+      else if (absChangePercent < 0.5) volatilityLevel = '低水準';
+
+      let rsi = 50;
+      if (changePercent > 1) rsi = Math.floor(65 + Math.random() * 15);
+      else if (changePercent > 0) rsi = Math.floor(55 + Math.random() * 10);
+      else if (changePercent < -1) rsi = Math.floor(30 + Math.random() * 15);
+      else if (changePercent < 0) rsi = Math.floor(40 + Math.random() * 10);
+      else rsi = Math.floor(45 + Math.random() * 10);
+
+      let technicalStatus = '中立';
+      if (rsi >= 70) technicalStatus = '過買い';
+      else if (rsi <= 30) technicalStatus = '過売り';
+
+      let trendPrediction = '横ばいの';
+      if (rsi >= 70) trendPrediction = '回調へのつながる';
+      else if (rsi <= 30) trendPrediction = '反発の可能性がある';
+      else if (changePercent > 0.5) trendPrediction = '上昇トレンド継続の';
+      else if (changePercent < -0.5) trendPrediction = '調整局面に入る';
+
+      const mockAnalysis = `【AI診断】ご入力いただいた${stockData.name}について、モメンタム分析・リアルタイムデータ・AIロジックをもとに診断を行いました。\n\n現在の株価は${stockData.price}円、前日比${stockData.change}円（${stockData.changePercent}）。\n\n現在、短期ボラティリティ指標が過去30日の平均と比較して${volatilityLevel}に達しています。AIの分析によると、テクニカルは${technicalStatus}（RSI[${rsi}%]）が優勢となっており、${trendPrediction}傾向が見られます。\n\n私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。\n\n追加が完了しましたら、詳細診断レポートを受け取るために、銘柄コード「${stockData.name}」または【${code}】を送信してください。`;
 
       await saveDiagnosisToCache(code, stockData, mockAnalysis, 'mock');
       const responseTime = Date.now() - startTime;
@@ -78,13 +102,19 @@ PBR: ${stockData.pbr}倍
 
 現在の株価は${stockData.price}円、前日比${stockData.change}円（${stockData.changePercent}）。
 
-現在、短期ボラティリティ指標が過去30日の平均と比較して中水準に達しています。AIの分析によると、テクニカルは過買い（RSI[73%]）が優勢となっており、回調へのつながる傾向が見られます。
+現在、短期ボラティリティ指標が過去30日の平均と比較して[低水準/中水準/高水準]に達しています。AIの分析によると、テクニカルは[過買い/過売り/中立]（RSI[XX%]）が優勢となっており、[回調へのつながる/反発の可能性がある/横ばいの/上昇トレンド継続の]傾向が見られます。
 
 私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。
 
 追加が完了しましたら、詳細診断レポートを受け取るために、銘柄コード「${stockData.name}」または【${code}】を送信してください。
 
-重要: このフォーマットを厳密に守り、他の分析内容は含めないでください。株価データは動的に変化しますが、テクニカル指標の説明は例示として固定値を使用してください。`;
+重要指示:
+1. このフォーマットを厳密に守ってください
+2. ボラティリティ水準は株価変動率(${stockData.changePercent})に基づいて判断：±2%以上=高水準、±0.5%-2%=中水準、±0.5%未満=低水準
+3. RSI値は30-80の範囲で株価動向に基づいて設定：上昇傾向=60-80、下降傾向=30-50、横ばい=45-55
+4. テクニカル状態はRSI値に基づいて：70以上=過買い、30以下=過売り、30-70=中立
+5. トレンド予測は前日比とテクニカル状態を組み合わせて判断
+6. []内の選択肢から適切なものを1つ選んで出力してください`;
     } else {
       prompt = `あなたは日本の株式市場アナリストです。ユーザーが入力したコード「${code}」について診断を行います。
 
