@@ -18,7 +18,7 @@ router.post('/diagnosis', async (req, res) => {
 
     if (!code) {
       console.error('Missing required parameters:', { code });
-      await recordUsageStats({ cacheHit: false, apiCall: false, error: true, responseTime: Date.now() - startTime });
+      await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 0, errors_count: 1 });
       return res.status(400).json({ error: 'Stock code is required' });
     }
 
@@ -26,7 +26,7 @@ router.post('/diagnosis', async (req, res) => {
     if (cachedResult) {
       console.log(`Returning cached result for ${code}`);
       const responseTime = Date.now() - startTime;
-      await recordUsageStats({ cacheHit: true, apiCall: false, error: false, responseTime });
+      await recordUsageStats({ requests_total: 1, cache_hits: 1, api_calls: 0, errors_count: 0 });
       return res.json({
         analysis: cachedResult.diagnosis_result,
         cached: true,
@@ -46,7 +46,7 @@ router.post('/diagnosis', async (req, res) => {
 
       await saveDiagnosisToCache(code, stockData, mockAnalysis, 'mock');
       const responseTime = Date.now() - startTime;
-      await recordUsageStats({ cacheHit: false, apiCall: false, error: false, responseTime });
+      await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 0, errors_count: 0 });
       return res.json({ analysis: mockAnalysis, cached: false, mock: true });
     }
 
@@ -142,7 +142,7 @@ PBR: ${stockData.pbr}倍
       if (fetchError.name === 'AbortError') {
         console.error('Request timeout after 45 seconds');
         const responseTime = Date.now() - startTime;
-        await recordUsageStats({ cacheHit: false, apiCall: true, error: true, responseTime });
+        await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 1, errors_count: 1 });
         res.write(`data: ${JSON.stringify({ error: 'リクエストがタイムアウトしました。もう一度お試しください。' })}\n\n`);
         res.end();
         return;
@@ -156,7 +156,7 @@ PBR: ${stockData.pbr}倍
       const errorBody = await siliconflowResponse.text();
       console.error('SiliconFlow API error response:', errorBody);
       const responseTime = Date.now() - startTime;
-      await recordUsageStats({ cacheHit: false, apiCall: true, error: true, responseTime });
+      await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 1, errors_count: 1 });
       res.write(`data: ${JSON.stringify({ error: `SiliconFlow API error: ${siliconflowResponse.status}` })}\n\n`);
       res.end();
       return;
@@ -215,14 +215,14 @@ PBR: ${stockData.pbr}倍
     }
 
     const responseTime = Date.now() - startTime;
-    await recordUsageStats({ cacheHit: false, apiCall: true, error: false, responseTime });
+    await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 1, errors_count: 0 });
 
   } catch (error) {
     console.error('Error in diagnosis function:', error);
     console.error('Error stack:', error.stack);
 
     const responseTime = Date.now() - startTime;
-    await recordUsageStats({ cacheHit: false, apiCall: false, error: true, responseTime });
+    await recordUsageStats({ requests_total: 1, cache_hits: 0, api_calls: 0, errors_count: 1 });
 
     if (!res.headersSent) {
       res.status(500).json({

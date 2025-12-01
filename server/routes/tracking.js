@@ -39,12 +39,17 @@ router.post('/event', async (req, res) => {
   try {
     const { sessionId, eventType, eventData, stockCode, stockName, durationMs, gclid } = req.body;
 
+    console.log('Event tracking request:', { sessionId, eventType, stockCode, stockName, gclid });
+
     if (!sessionId || !eventType) {
+      console.error('Missing required fields:', { sessionId, eventType });
       return res.status(400).json({ error: 'Session ID and event type are required' });
     }
 
     if (eventType === 'conversion') {
+      console.log('Processing conversion for session:', sessionId);
       updateSession(sessionId, { converted: true });
+      console.log('Session marked as converted:', sessionId);
     }
 
     createEvent({
@@ -56,6 +61,8 @@ router.post('/event', async (req, res) => {
       duration_ms: durationMs,
       gclid: gclid
     });
+
+    console.log('Event created successfully:', eventType);
 
     res.json({ success: true });
   } catch (error) {

@@ -381,25 +381,28 @@ export default function RefactoredHome() {
 
       const lineUrl = data.link.redirect_url;
 
-      // Track conversion using sendBeacon for reliable tracking
+      const sessionId = userTracking.getSessionId();
+      console.log('Tracking conversion for session:', sessionId);
+
       trackConversion();
 
-      // Use sendBeacon for non-blocking tracking
       if (navigator.sendBeacon) {
         const trackingData = JSON.stringify({
-          sessionId: sessionStorage.getItem('sessionId') || '',
+          sessionId: sessionId,
           eventType: 'conversion',
           gclid: urlParams.gclid,
           eventData: {
             conversion_time: new Date().toISOString()
           }
         });
-        navigator.sendBeacon('/api/tracking/event', trackingData);
+        const blob = new Blob([trackingData], { type: 'application/json' });
+        const sent = navigator.sendBeacon('/api/tracking/event', blob);
+        console.log('SendBeacon conversion tracking sent:', sent);
       } else {
-        // Fallback for browsers that don't support sendBeacon
         await userTracking.trackConversion({
           gclid: urlParams.gclid
         });
+        console.log('Fallback conversion tracking completed');
       }
 
       console.log('LINE conversion tracked successfully');
@@ -433,7 +436,7 @@ export default function RefactoredHome() {
       });
 
       await userTracking.trackEvent({
-        sessionId: sessionStorage.getItem('sessionId') || '',
+        sessionId: userTracking.getSessionId(),
         eventType: 'report_download',
         stockCode: stockCode,
         stockName: stockData?.info.name || '',

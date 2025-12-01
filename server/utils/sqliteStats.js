@@ -96,10 +96,20 @@ export async function getTodayStats() {
     WHERE date = ?
   `).get(today);
 
+  const requests_total = stats?.requests_total || 0;
+  const cache_hits = stats?.cache_hits || 0;
+  const api_calls = stats?.api_calls || 0;
+  const errors_count = stats?.errors_count || 0;
+
+  const cacheHitRate = requests_total > 0 ? ((cache_hits / requests_total) * 100).toFixed(2) : '0.00';
+
   return {
-    requests_total: stats?.requests_total || 0,
-    cache_hits: stats?.cache_hits || 0,
-    api_calls: stats?.api_calls || 0,
-    errors_count: stats?.errors_count || 0,
+    totals: {
+      requests_total,
+      cache_hits,
+      api_calls,
+      errors_count,
+    },
+    cacheHitRate,
   };
 }
