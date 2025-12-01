@@ -42,7 +42,7 @@ router.post('/diagnosis', async (req, res) => {
     if (!apiKeysString) {
       console.warn('SILICONFLOW_API_KEY not configured, using mock response');
 
-      const mockAnalysis = `【${stockData.name}（${code}）の市場分析】\n\n現在の株価は${stockData.price}円で、前日比${stockData.change}円（${stockData.changePercent}%）の変動となっています。\n\n■ テクニカル指標\nPER: ${stockData.per}倍\nPBR: ${stockData.pbr}倍\n配当利回り: ${stockData.dividend}%\n\n■ 業種分析\n${stockData.industry}セクターに属しており、時価総額は${stockData.marketCap}億円です。\n\n■ 市場動向\n本銘柄は現在の市場環境において、一定の注目を集めています。テクニカル指標から見ると、${parseFloat(stockData.per) > 15 ? "やや割高" : "適正水準"}の評価となっています。\n\n※本分析は情報提供のみを目的としており、投資の推奨や助言ではありません。投資判断は必ずご自身の責任で行ってください。`;
+      const mockAnalysis = `【AI診断】ご入力いただいた${stockData.name}について、モメンタム分析・リアルタイムデータ・AIロジックをもとに診断を行いました。\n\n現在の株価は${stockData.price}円、前日比${stockData.change}円（${stockData.changePercent}）。\n\n現在、短期ボラティリティ指標が過去30日の平均と比較して中水準に達しています。AIの分析によると、テクニカルは過買い（RSI[73%]）が優勢となっており、回調へのつながる傾向が見られます。\n\n私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。\n\n追加が完了しましたら、詳細診断レポートを受け取るために、銘柄コード「${stockData.name}」または【${code}】を送信してください。`;
 
       await saveDiagnosisToCache(code, stockData, mockAnalysis, 'mock');
       const responseTime = Date.now() - startTime;
@@ -74,17 +74,17 @@ PBR: ${stockData.pbr}倍
 
 必ず以下のフォーマットで出力してください：
 
-ご入力いただいた ${stockData.name} について、モメンタム分析・リアルタイムデータ・AIロジックをもとに診断を行いました。
+【AI診断】ご入力いただいた${stockData.name}について、モメンタム分析・リアルタイムデータ・AIロジックをもとに診断を行いました。
 
-現在の株価は ${stockData.price} 円、前日比 ${stockData.change} 円（${stockData.changePercent}）
+現在の株価は${stockData.price}円、前日比${stockData.change}円（${stockData.changePercent}）。
 
-私たちのスタッフ、「AI 株式 アシスタント」のLINEアカウントを追加してください。
+現在、短期ボラティリティ指標が過去30日の平均と比較して中水準に達しています。AIの分析によると、テクニカルは過買い（RSI[73%]）が優勢となっており、回調へのつながる傾向が見られます。
 
-追加が完了しましたら、詳細な診断レポートを受け取るために、銘柄コード「${stockData.name}」または「${code}」と送信してください。
+私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。
 
-メッセージを送信した瞬間にAI診断が始まり、最新レポートが即座に届きます。
+追加が完了しましたら、詳細診断レポートを受け取るために、銘柄コード「${stockData.name}」または【${code}】を送信してください。
 
-重要: このフォーマットを厳密に守り、他の分析内容は含めないでください。`;
+重要: このフォーマットを厳密に守り、他の分析内容は含めないでください。株価データは動的に変化しますが、テクニカル指標の説明は例示として固定値を使用してください。`;
     } else {
       prompt = `あなたは日本の株式市場アナリストです。ユーザーが入力したコード「${code}」について診断を行います。
 
@@ -92,11 +92,13 @@ PBR: ${stockData.pbr}倍
 
 必ず以下のフォーマットで出力してください：
 
-ご入力いただいたコード「${code}」について確認しました。
+【AI診断】ご入力いただいたコード「${code}」について確認しました。
 
 申し訳ございませんが、このコードに対応する株式データを取得できませんでした。正しい4桁の株式コード（例：2269）を入力してください。
 
-追加が完了しましたら、詳細な診断レポートを受け取るために、正しい銘柄コードを送信してください。
+私たちのスタッフ、「AI株式診断アシスタント」のLINEアカウントを追加してください。
+
+追加が完了しましたら、詳細診断レポートを受け取るために、正しい銘柄コードを送信してください。
 
 重要: このフォーマットを厳密に守り、他の分析内容は含めないでください。`;
     }

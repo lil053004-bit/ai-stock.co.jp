@@ -35,7 +35,7 @@ const parseNumber = (text: string): ReactNode[] => {
 };
 
 const parseLine = (line: string): AnalysisLine => {
-  const isBold = line.includes('###') || line.includes('**') || /^[\d]+\./.test(line);
+  const isBold = line.includes('###') || line.includes('**') || /^[\d]+\./.test(line) || line.includes('【AI診断】');
   const cleanLine = line.replace(/###|\*\*/g, '');
 
   return {
