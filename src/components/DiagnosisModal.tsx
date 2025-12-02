@@ -68,8 +68,9 @@ export default function DiagnosisModal({
           >
           <div className="flex-1 text-center">
             <h2 className="text-sm font-bold text-white">
-              {stockName}（{stockCode}）AI分析レポート
+              {stockName}（{stockCode}）AI分析情報
             </h2>
+            <p className="text-xs text-cyan-100 mt-1">※参考情報としてご活用ください</p>
             {isConnecting && (
               <div className="flex items-center gap-2 text-white text-sm justify-center mt-2">
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -100,7 +101,7 @@ export default function DiagnosisModal({
                 {isConnecting ? (
                   <div className="text-center py-8">
                     <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" style={{ color: '#06B6D4' }} />
-                    <p className="font-semibold" style={{ color: '#0C4A6E' }}>AI分析中...</p>
+                    <p className="font-semibold" style={{ color: '#0C4A6E' }}>AI情報分析中...</p>
                     <p className="text-sm mt-2" style={{ color: '#0284C7' }}>処理中...</p>
                   </div>
                 ) : (
@@ -119,7 +120,7 @@ export default function DiagnosisModal({
               className="w-full bg-gradient-to-r from-[#06C755] to-[#05b04b] hover:from-[#05b04b] hover:to-[#049c42] text-white font-bold py-4 px-6 rounded-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 text-sm mt-6"
             >
               <ExternalLink className="w-6 h-6 flex-shrink-0" />
-              <span>LINEで毎日AIレポートを受け取る</span>
+              <span>LINEで定期的に分析情報を受け取る</span>
             </button>
 
             <div className="mt-3 p-4 rounded-lg border" style={{ backgroundColor: '#FFF7ED', borderColor: '#FB923C' }}>
@@ -140,18 +141,18 @@ export default function DiagnosisModal({
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 font-bold mt-0.5">✓</span>
-                  <span><strong className="text-green-700">完全無料</strong>：LINEへの移動後も追加料金は一切かかりません。</span>
+                  <span><strong className="text-green-700">無料提供</strong>：LINEへの移動後も追加料金はかかりません。</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-green-600 font-bold mt-0.5">✓</span>
-                  <span>LINE友だち追加で毎日最新のAI分析レポートが受け取れます。</span>
+                  <span>LINE友だち追加で定期的にAI分析情報が受け取れます（参考情報）。</span>
                 </li>
               </ul>
             </div>
 
             <div className="mt-3 p-3 rounded-lg border-2" style={{ backgroundColor: '#FEF3C7', borderColor: '#F59E0B' }}>
               <p className="text-xs text-gray-800 leading-relaxed">
-                <strong className="text-amber-900">免責事項：</strong>本AI診断は情報提供のみを目的としており、投資助言や推奨ではありません。投資判断および取引は、ご自身の責任において行ってください。当サービスは投資結果について一切の責任を負いません。
+                <strong className="text-amber-900">重要な免責事項：</strong>本サービスが提供するAI分析情報は、あくまで参考情報であり、投資助言、投資推奨、または金融商品の勧誘ではありません。投資判断は必ずご自身の責任と判断で行ってください。当サービスは投資結果に対するいかなる責任も負いません。
               </p>
             </div>
           </div>

@@ -23,8 +23,8 @@ export default function Footer() {
                 <div className="bg-slate-700/70 rounded p-3 border-l-4 border-cyan-500">
                   <p className="font-bold text-cyan-300 mb-2">【サービスの性質】</p>
                   <p>
-                    本サービスは、AI技術を活用した株式情報の提供および分析ツールです。
-                    <strong className="text-red-700">投資助言業務、投資一任業務、金融商品仲介業務には該当せず、特定の金融商品の売買を推奨・勧誘するものではありません。</strong>
+                    本サービスは、AI技術を活用した株式関連情報の提供および参考分析ツールです。
+                    <strong className="text-red-700">金融商品取引法に定める投資助言業務、投資一任業務、金融商品仲介業務には該当せず、特定の金融商品の購入、売却、保有を推奨・勧誘するものではありません。</strong>
                   </p>
                 </div>
 
@@ -72,7 +72,7 @@ export default function Footer() {
         <div className="md:hidden bg-cyan-500/10 backdrop-blur-md border border-cyan-400/50 rounded-xl p-4 text-center mb-6">
           <p className="text-sm text-cyan-300 font-semibold mb-1">⚠️ 重要なお知らせ</p>
           <p className="text-xs text-cyan-100 leading-relaxed">
-            当サービスは情報提供のみを目的としており、投資助言や投資勧誘を行うものではありません。投資判断は必ずご自身の責任で行ってください。
+            当サービスは参考情報の提供のみを目的としており、投資助言、投資推奨、または金融商品の勧誘を行うものではありません。投資判断は必ずご自身の責任で行ってください。
           </p>
         </div>
 
@@ -153,9 +153,9 @@ export default function Footer() {
               &copy; {currentYear} 株式会社アドバンス (Advance Co., Ltd.). All rights reserved.
             </p>
             <p className="text-[10px] sm:text-xs text-white/90 drop-shadow-lg leading-relaxed max-w-3xl mx-auto mb-4">
-              当サイトで提供される情報は投資勧誘を目的としたものではありません。
-              投資に関する最終決定は、利用者ご自身の判断でなさるようお願いいたします。
-              掲載されている情報の正確性については万全を期しておりますが、その内容の正確性、安全性、有用性を保証するものではありません。
+              当サイトで提供される情報は、参考情報であり投資助言、投資推奨、または金融商品の勧誘を目的としたものではありません。
+              投資に関する最終決定は、利用者ご自身の判断と責任でなさるようお願いいたします。
+              掲載されている情報の正確性については万全を期しておりますが、その内容の完全性、正確性、安全性、有用性、適時性を保証するものではありません。
             </p>
 
             {/* Service Information */}

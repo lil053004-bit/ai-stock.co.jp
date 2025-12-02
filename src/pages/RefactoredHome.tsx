@@ -496,7 +496,7 @@ export default function RefactoredHome() {
                       </span>
                       <span className="text-sm font-medium mr-2 text-yellow-200">{record.time}</span>
                       <span className="text-sm font-bold mr-2">{record.stock}</span>
-                      <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">無料レポート取得</span>
+                      <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">分析情報取得</span>
                     </span>
                   ))}
                 </div>
