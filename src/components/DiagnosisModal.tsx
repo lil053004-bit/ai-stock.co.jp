@@ -68,7 +68,7 @@ export default function DiagnosisModal({
           >
           <div className="flex-1 text-center">
             <h2 className="text-sm font-bold text-white">
-              {stockName}（{stockCode}）AI分析情報
+              {stockName}（{stockCode}）AIデータ分析
             </h2>
             <p className="text-xs text-slate-lighter mt-1">※参考情報としてご活用ください</p>
             {isConnecting && (

@@ -62,7 +62,7 @@ export default function RefactoredHome() {
         setInputValue(displayValue);
         fetchStockData(firstResult.code);
 
-        setAutoFillMessage('広告から株式情報を自動入力しました。下のボタンをクリックしてAI診断を開始してください。');
+        setAutoFillMessage('広告からデータ情報を自動入力しました。下のボタンをクリックしてAI分析を開始してください。');
         setShowAdDisclaimer(true);
       } else {
         setStockCode(urlParams.code);
@@ -225,7 +225,7 @@ export default function RefactoredHome() {
       }
 
       if (!response.ok) {
-        throw new Error('AI診断に失敗しました');
+        throw new Error('AI分析に失敗しました');
       }
 
       setDiagnosisState('processing');
@@ -301,7 +301,7 @@ export default function RefactoredHome() {
         const result = await response.json();
 
         if (!result.analysis || result.analysis.trim() === '') {
-          throw new Error('診断結果が生成されませんでした');
+          throw new Error('分析結果が生成されませんでした');
         }
 
         setAnalysisResult(result.analysis);
@@ -323,7 +323,7 @@ export default function RefactoredHome() {
       }
     } catch (err) {
       console.error('Diagnosis error:', err);
-      let errorMessage = '診断中にエラーが発生しました';
+      let errorMessage = '分析中にエラーが発生しました';
       let errorDetails = '';
 
       if (err instanceof Error) {
@@ -520,13 +520,13 @@ export default function RefactoredHome() {
                       <div className="flex-1">
                         <p className="text-sm font-bold text-blue-900 mb-1">広告からのご訪問</p>
                         <p className="text-xs text-blue-800 leading-relaxed">
-                          Google広告経由でお越しいただきありがとうございます。株式コードが自動入力されていますが、AI診断を開始するには下の「無料でAI診断を開始」ボタンをクリックしてください。
+                          Google広告経由でお越しいただきありがとうございます。データコードが自動入力されていますが、AI分析を開始するには下の「無料でAI分析を開始」ボタンをクリックしてください。
                         </p>
                       </div>
                     </div>
                     <div className="mt-3 pt-3 border-t border-blue-200">
                       <p className="text-xs text-blue-700">
-                        <span className="font-semibold">重要：</span>本サービスは情報提供のみを目的としており、投資助言ではありません。投資判断はご自身の責任で行ってください。
+                        <span className="font-semibold">重要：</span>本サービスは情報提供のみを目的としており、特定の行動や判断を推奨するものではありません。情報の利用はご自身の責任で行ってください。
                       </p>
                     </div>
                   </div>
@@ -557,7 +557,7 @@ export default function RefactoredHome() {
 
                 {diagnosisState === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center animate-fadeIn mt-4">
-                    <h3 className="text-lg font-bold text-red-600 mb-2">診断エラー</h3>
+                    <h3 className="text-lg font-bold text-red-600 mb-2">分析エラー</h3>
                     <p className="text-red-600 text-sm mb-4 whitespace-pre-line">{error}</p>
                     <button
                       onClick={() => {

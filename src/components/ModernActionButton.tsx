@@ -17,12 +17,12 @@ export default function ModernActionButton({ onClick, disabled = false, isFromAd
             height: '56px'
           }}
         >
-          <span className="text-lg">{isFromAd ? '無料でAI診断を開始' : '診断を開始する'}</span>
+          <span className="text-lg">{isFromAd ? '無料でAI分析を開始' : '分析を開始する'}</span>
         </button>
       </div>
       <div className="mt-4 text-center">
         <p className="text-xs text-gray-500 leading-relaxed">
-          ※本診断は情報提供のみを目的としており、投資助言ではありません。投資判断はご自身の責任で行ってください。
+          ※本分析は情報提供のみを目的としており、特定の行動や判断を推奨するものではありません。情報の利用はご自身の責任で行ってください。
         </p>
       </div>
     </>
