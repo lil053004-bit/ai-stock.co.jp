@@ -487,14 +487,14 @@ export default function RefactoredHome() {
             </div>
 
             <div className="w-[95%] mx-auto mb-4">
-              <div className="overflow-hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 py-2 shadow-lg rounded-xl">
+              <div className="overflow-hidden bg-gradient-to-r from-slate-secondary via-slate-primary to-slate-secondary py-2 shadow-lg rounded-xl">
                 <div className="animate-scroll-left whitespace-nowrap inline-block">
                   {[...diagnosisRecords, ...diagnosisRecords, ...diagnosisRecords].map((record, index) => (
                     <span key={index} className="inline-flex items-center mx-4 text-white">
                       <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/20 mr-2 text-sm">
                         {record.icon}
                       </span>
-                      <span className="text-sm font-medium mr-2 text-yellow-200">{record.time}</span>
+                      <span className="text-sm font-medium mr-2 text-accent-amber-light">{record.time}</span>
                       <span className="text-sm font-bold mr-2">{record.stock}</span>
                       <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">分析情報取得</span>
                     </span>

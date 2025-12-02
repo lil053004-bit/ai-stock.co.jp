@@ -73,11 +73,11 @@ export default function IllustrationCard() {
               <div
                 className="px-6 py-3"
                 style={{
-                  background: 'linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%)'
+                  background: 'linear-gradient(135deg, #475569 0%, #334155 100%)'
                 }}
               >
                 <h2 className="text-2xl font-bold text-white leading-tight">
-                  株式インテリジェント分析監視ツール
+                  データインテリジェント分析ツール
                 </h2>
               </div>
             </div>

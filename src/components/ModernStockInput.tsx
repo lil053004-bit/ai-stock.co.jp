@@ -87,7 +87,7 @@ export default function ModernStockInput({ value, onChange, onStockSelect }: Mod
           value={value}
           onChange={(e) => onChange(e.target.value)}
           onFocus={handleInputFocus}
-          placeholder="例: 7203 / トヨタ / ソニー"
+          placeholder="例: 7203 / コード検索"
           className="w-full px-4 py-3 text-base text-gray-900 bg-[#F4F4F4] rounded-xl border-0 focus:ring-2 focus:ring-gray-300 focus:outline-none placeholder-gray-400 transition-all duration-200"
           style={{ height: '52px' }}
           disabled={isLoading}

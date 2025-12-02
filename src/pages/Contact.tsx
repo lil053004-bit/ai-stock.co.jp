@@ -160,22 +160,13 @@ export default function Contact() {
             <div className="bg-slate-100 rounded-lg p-6">
               <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <Mail className="w-5 h-5" />
-                運営会社情報
+お問い合わせ方法
               </h3>
               <p className="text-sm text-gray-700 mb-2">
-                <strong>会社名:</strong> 株式会社アドバンス（Advance Co., Ltd.）
+                上記のフォームからお問い合わせください。
               </p>
               <p className="text-sm text-gray-700 mb-2">
-                <strong>所在地:</strong> 〒101-0032 東京都千代田区岩本町2-8-2 都ビジネスビル9階
-              </p>
-              <p className="text-sm text-gray-700 mb-2">
-                <strong>設立:</strong> 2012年10月
-              </p>
-              <p className="text-sm text-gray-700 mb-2">
-                <strong>業種:</strong> デジタルマーケティング／広告戦略・運用／データ分析
-              </p>
-              <p className="text-sm text-gray-700 mb-2">
-                <strong>メールアドレス:</strong> support@aisbistock.com
+                通常、営業日内に返信いたします。
               </p>
               <p className="text-sm text-gray-700">
                 <strong>受付時間:</strong> 24時間受付（返信は営業日内）

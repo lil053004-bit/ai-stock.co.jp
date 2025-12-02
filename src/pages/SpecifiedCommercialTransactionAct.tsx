@@ -32,30 +32,15 @@ export default function SpecifiedCommercialTransactionAct() {
                   <Building className="w-5 h-5 text-blue-600" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">販売業者情報</h2>
+                  <h2 className="text-xl font-bold text-gray-900 mb-4">事業者情報</h2>
                   <dl className="space-y-3">
                     <div className="grid sm:grid-cols-3 gap-2">
-                      <dt className="font-semibold text-gray-900">会社名</dt>
-                      <dd className="sm:col-span-2 text-gray-700">株式会社アドバンス</dd>
+                      <dt className="font-semibold text-gray-900">事業者名</dt>
+                      <dd className="sm:col-span-2 text-gray-700">本サービス運営者</dd>
                     </div>
                     <div className="grid sm:grid-cols-3 gap-2">
-                      <dt className="font-semibold text-gray-900">会社名（英語）</dt>
-                      <dd className="sm:col-span-2 text-gray-700">Advance Co., Ltd.</dd>
-                    </div>
-                    <div className="grid sm:grid-cols-3 gap-2">
-                      <dt className="font-semibold text-gray-900">所在地</dt>
-                      <dd className="sm:col-span-2 text-gray-700">
-                        〒101-0032<br />
-                        東京都千代田区岩本町2-8-2 都ビジネスビル9階
-                      </dd>
-                    </div>
-                    <div className="grid sm:grid-cols-3 gap-2">
-                      <dt className="font-semibold text-gray-900">設立</dt>
-                      <dd className="sm:col-span-2 text-gray-700">2012年10月</dd>
-                    </div>
-                    <div className="grid sm:grid-cols-3 gap-2">
-                      <dt className="font-semibold text-gray-900">業種</dt>
-                      <dd className="sm:col-span-2 text-gray-700">デジタルマーケティング／広告戦略・運用／データ分析</dd>
+                      <dt className="font-semibold text-gray-900">サービス内容</dt>
+                      <dd className="sm:col-span-2 text-gray-700">AIデータ分析情報の提供（参考情報）</dd>
                     </div>
                   </dl>
                 </div>
