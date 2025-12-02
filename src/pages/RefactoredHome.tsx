@@ -487,7 +487,7 @@ export default function RefactoredHome() {
             </div>
 
             <div className="w-[95%] mx-auto mb-4">
-              <div className="overflow-hidden bg-gradient-to-r from-slate-secondary via-slate-primary to-slate-secondary py-2 shadow-lg rounded-xl">
+              <div className="overflow-hidden bg-transparent border border-slate-light/30 py-2 shadow-lg rounded-xl backdrop-blur-sm">
                 <div className="animate-scroll-left whitespace-nowrap inline-block">
                   {[...diagnosisRecords, ...diagnosisRecords, ...diagnosisRecords].map((record, index) => (
                     <span key={index} className="inline-flex items-center mx-4 text-white">
