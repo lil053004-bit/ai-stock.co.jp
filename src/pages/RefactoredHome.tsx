@@ -46,6 +46,7 @@ export default function RefactoredHome() {
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const isAutoSelectingRef = useRef<boolean>(false);
   const [autoFillMessage, setAutoFillMessage] = useState<string>('');
+  const [showAdDisclaimer, setShowAdDisclaimer] = useState<boolean>(false);
 
   useEffect(() => {
     if (urlParams.code && !isSearchLoading) {
@@ -61,16 +62,18 @@ export default function RefactoredHome() {
         setInputValue(displayValue);
         fetchStockData(firstResult.code);
 
-        setAutoFillMessage('株式情報を自動入力しました');
-        setTimeout(() => setAutoFillMessage(''), 2000);
+        setAutoFillMessage('広告から株式情報を自動入力しました。下のボタンをクリックしてAI診断を開始してください。');
+        setShowAdDisclaimer(true);
       } else {
         setStockCode(urlParams.code);
         setInputValue(urlParams.code);
         fetchStockData(urlParams.code);
+        setShowAdDisclaimer(true);
       }
     } else if (!urlParams.code) {
       setStockCode('');
       setInputValue('');
+      setShowAdDisclaimer(false);
     }
   }, [urlParams.code, search, isSearchLoading]);
 
@@ -508,7 +511,28 @@ export default function RefactoredHome() {
                   onStockSelect={handleStockSelect}
                 />
 
-                {autoFillMessage && (
+                {showAdDisclaimer && (
+                  <div className="mt-4 mb-2 p-4 bg-blue-50 border-2 border-blue-200 rounded-xl animate-fadeIn">
+                    <div className="flex items-start gap-2 mb-2">
+                      <div className="flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5">
+                        i
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-blue-900 mb-1">広告からのご訪問</p>
+                        <p className="text-xs text-blue-800 leading-relaxed">
+                          Google広告経由でお越しいただきありがとうございます。株式コードが自動入力されていますが、AI診断を開始するには下の「無料でAI診断を開始」ボタンをクリックしてください。
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-3 pt-3 border-t border-blue-200">
+                      <p className="text-xs text-blue-700">
+                        <span className="font-semibold">重要：</span>本サービスは情報提供のみを目的としており、投資助言ではありません。投資判断はご自身の責任で行ってください。
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {autoFillMessage && !showAdDisclaimer && (
                   <div className="text-center py-2 text-sm text-green-600 font-medium animate-fadeIn">
                     {autoFillMessage}
                   </div>
@@ -528,7 +552,7 @@ export default function RefactoredHome() {
                 )}
 
                 {!loading && diagnosisState === 'initial' && (
-                  <ModernActionButton onClick={runDiagnosis} disabled={!inputValue || !stockCode} />
+                  <ModernActionButton onClick={runDiagnosis} disabled={!inputValue || !stockCode} isFromAd={showAdDisclaimer} />
                 )}
 
                 {diagnosisState === 'error' && (

@@ -1,9 +1,10 @@
 interface ModernActionButtonProps {
   onClick: () => void;
   disabled?: boolean;
+  isFromAd?: boolean;
 }
 
-export default function ModernActionButton({ onClick, disabled = false }: ModernActionButtonProps) {
+export default function ModernActionButton({ onClick, disabled = false, isFromAd = false }: ModernActionButtonProps) {
   return (
     <>
       <div className="relative animate-fadeIn mt-6" style={{ animationDelay: '0.3s' }}>
@@ -16,12 +17,12 @@ export default function ModernActionButton({ onClick, disabled = false }: Modern
             height: '56px'
           }}
         >
-          <span className="text-lg">診断を開始する</span>
+          <span className="text-lg">{isFromAd ? '無料でAI診断を開始' : '診断を開始する'}</span>
         </button>
       </div>
       <div className="mt-4 text-center">
         <p className="text-xs text-gray-500 leading-relaxed">
-          ※本診断は投資助言ではありません。投資判断は自己責任でお願いいたします。
+          ※本診断は情報提供のみを目的としており、投資助言ではありません。投資判断はご自身の責任で行ってください。
         </p>
       </div>
     </>

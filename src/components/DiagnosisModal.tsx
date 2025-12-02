@@ -148,6 +148,12 @@ export default function DiagnosisModal({
                 </li>
               </ul>
             </div>
+
+            <div className="mt-3 p-3 rounded-lg border-2" style={{ backgroundColor: '#FEF3C7', borderColor: '#F59E0B' }}>
+              <p className="text-xs text-gray-800 leading-relaxed">
+                <strong className="text-amber-900">免責事項：</strong>本AI診断は情報提供のみを目的としており、投資助言や推奨ではありません。投資判断および取引は、ご自身の責任において行ってください。当サービスは投資結果について一切の責任を負いません。
+              </p>
+            </div>
           </div>
         </div>
         </div>
