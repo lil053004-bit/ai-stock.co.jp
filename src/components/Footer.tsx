@@ -76,72 +76,9 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Footer Links Section */}
+        {/* Copyright Section */}
         <div className="border-t-2 border-white/30 pt-6">
-          <div className="grid grid-cols-2 gap-6 mb-6">
-            {/* Legal Documents */}
-            <div>
-              <h4 className="font-bold text-white drop-shadow-lg mb-3 flex items-center gap-2 text-sm">
-                <FileText className="w-4 h-4" />
-                法的文書
-              </h4>
-              <ul className="space-y-2 text-xs sm:text-sm">
-                <li>
-                  <Link
-                    to="/company"
-                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
-                  >
-                    会社概要 <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/terms"
-                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
-                  >
-                    利用規約 <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/privacy"
-                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
-                  >
-                    プライバシーポリシー <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/specified-commercial-transaction-act"
-                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
-                  >
-                    特定商取引法表記 <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-bold text-white drop-shadow-lg mb-3 flex items-center gap-2 text-sm">
-                <Mail className="w-4 h-4" />
-                お問い合わせ
-              </h4>
-              <ul className="space-y-2 text-xs sm:text-sm">
-                <li>
-                  <Link
-                    to="/contact"
-                    className="text-white drop-shadow-lg hover:text-yellow-300 hover:underline flex items-center gap-1"
-                  >
-                    お問い合わせフォーム <ExternalLink className="w-3 h-3" />
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Copyright Section */}
-          <div className="border-t border-white/30 pt-4 text-center">
+          <div className="text-center">
             <p className="text-xs sm:text-sm text-white drop-shadow-lg mb-2 font-medium">
               &copy; {currentYear} 本サービス. All rights reserved.
             </p>
